@@ -3,46 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Confession</title>
+    <title>Christmas Wishes</title>
     <style>
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background-color: #ffe6e6;
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
             text-align: center;
-            padding: 50px;
+            width: 300px;
         }
-        .heart {
-            color: #ff6666;
-            font-size: 48px;
+        .card h1 {
+            color: #d32f2f;
         }
-        .message {
-            font-size: 24px;
+        .card p {
+            color: #555;
+        }
+        .card .footer {
             margin-top: 20px;
-        }
-        .button {
-            background-color: #ff9999;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: #ff6666;
+            font-size: 0.9em;
+            color: #888;
         }
     </style>
 </head>
 <body>
-    <div>
-        <h1 class="heart">❤️</h1>
-        <p class="message">I've got a confession to make...</p>
-        <button class="button" onclick="showLove()">Click Here</button>
-        <p id="confession" class="message" style="display:none;">I love you more than words can say! 💖</p>
+    <div class="card">
+        <h1>Merry Christmas!</h1>
+        <p>Wishing you a season filled with joy, peace, and love.</p>
+        <div class="footer">From, [Your Name]</div>
     </div>
-    <script>
-        function showLove() {
-            document.getElementById('confession').style.display = 'block';
-        }
-    </script>
 </body>
 </html>
