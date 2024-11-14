@@ -1,63 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christmas Wishes</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #001f3f;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-        }
-        .card {
-            text-align: center;
-            position: relative;
-        }
-        .card h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        .card p {
-            font-size: 1.5em;
-        }
-        .tree {
-            width: 100px;
-            height: 150px;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/4/4d/Christmas_tree_icon.png') no-repeat center center;
-            background-size: contain;
-            margin: 0 auto;
-        }
-        .santa {
-            position: absolute;
-            top: 20px;
-            left: -200px;
-            width: 150px;
-            height: 100px;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Santa_Claus_in_sleigh.png') no-repeat center center;
-            background-size: contain;
-            animation: moveSanta 10s linear infinite;
-        }
-        @keyframes moveSanta {
-            0% { left: -200px; }
-            100% { left: 100%; }
-        }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <div class="santa"></div>
-        <h1>Merry Christmas!</h1>
-        <div class="tree"></div>
-        <p>Wishing you a season filled with joy, peace, and love.</p>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glass Christmas Card</title>
+    <!-- Google Font -->
+    <link
+      <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="shapes"></div>
+      <div class="card">
+        <img src="snowman-image.png" />
+        <div class="text-container">
+          <h2>Merry Christmas</h2>
+          <p>
+            May your Christmas be full of love, laughter and goodwill. Have a
+            Merry Christmas .
+          </p>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
