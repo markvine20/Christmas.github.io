@@ -6,40 +6,58 @@
     <title>Christmas Wishes</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #001f3f;
+            color: white;
             font-family: 'Arial', sans-serif;
-            background-color: #f2f2f2;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
         }
         .card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
             text-align: center;
-            width: 300px;
+            position: relative;
         }
         .card h1 {
-            color: #d32f2f;
+            font-size: 3em;
+            margin-bottom: 20px;
         }
         .card p {
-            color: #555;
+            font-size: 1.5em;
         }
-        .card .footer {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #888;
+        .tree {
+            width: 100px;
+            height: 150px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/4/4d/Christmas_tree_icon.png') no-repeat center center;
+            background-size: contain;
+            margin: 0 auto;
+        }
+        .santa {
+            position: absolute;
+            top: 20px;
+            left: -200px;
+            width: 150px;
+            height: 100px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Santa_Claus_in_sleigh.png') no-repeat center center;
+            background-size: contain;
+            animation: moveSanta 10s linear infinite;
+        }
+        @keyframes moveSanta {
+            0% { left: -200px; }
+            100% { left: 100%; }
         }
     </style>
 </head>
 <body>
     <div class="card">
+        <div class="santa"></div>
         <h1>Merry Christmas!</h1>
+        <div class="tree"></div>
         <p>Wishing you a season filled with joy, peace, and love.</p>
-        <div class="footer">From, [Your Name]</div>
     </div>
 </body>
 </html>
