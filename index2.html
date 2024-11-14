@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Are You?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 80%;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="inputContainer">
+        <h1>Who Are You?</h1>
+        <input type="text" id="nameInput" placeholder="Name?" />
+        <button onclick="storeName()">Submit</button>
+        <button onclick="clearName()">Clear Name</button>
+    </div>
+
+    <div class="container" id="messageContainer" style="display: none;">
+        <h1>Hello, <span id="userName"></span>!</h1>
+        <p id="encouragingMessage"></p>
+        <button onclick="clearName()">Clear Name</button>
+    </div>
+
+    <script>
+        const messages = [
+            "You have the power to achieve great things. Remember, every step you take brings you closer to your goals. Keep pushing forward and never give up.",
+            "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle. Stay positive and keep striving for excellence.",
+            "Your determination and hard work are truly inspiring. Keep your head up and continue to chase your dreams. Success is just around the corner.",
+            "You are capable of amazing things. Stay focused, stay strong, and keep moving forward. The best is yet to come.",
+            "Every challenge you face is an opportunity to grow and improve. Embrace the journey and keep pushing yourself to new heights.",
+            "Your resilience and perseverance are remarkable. Keep believing in yourself and your abilities. Great things are on the horizon.",
+            "You have a unique set of talents and strengths. Use them to your advantage and keep striving for greatness. You are unstoppable.",
+            "Stay positive and keep your eyes on the prize. Your hard work and dedication will pay off. Keep going, you're doing great!",
+            "You have the courage and determination to overcome any obstacle. Keep pushing forward and never lose sight of your dreams.",
+            "Your positive attitude and hard work are an inspiration to others. Keep shining and making a difference. You are amazing.",
+            "Believe in your dreams and work hard to achieve them. You have the power to make them a reality. Keep going, you're almost there.",
+            "Your strength and determination are truly admirable. Keep pushing forward and never give up. Success is within your reach.",
+            "You have the ability to achieve anything you set your mind to. Stay focused and keep working hard. Great things are coming your way.",
+            "Your hard work and dedication are paying off. Keep believing in yourself and your abilities. You are destined for greatness.",
+            "Stay positive and keep moving forward. Your perseverance and determination will lead you to success. Keep up the great work!",
+            "You have the power to create your own destiny. Keep working hard and never give up on your dreams. You are capable of amazing things.",
+            "Your positive attitude and determination are an inspiration to others. Keep shining and making a difference. You are incredible.",
+            "Believe in yourself and your abilities. You have the power to achieve great things. Keep pushing forward and never give up.",
+            "Your hard work and dedication are truly inspiring. Keep believing in yourself and your dreams. Success is just around the corner.",
+            "You have the strength and determination to overcome any challenge. Keep pushing forward and never lose sight of your goals.",
+            "Your resilience and perseverance are remarkable. Keep believing in yourself and your abilities. Great things are on the horizon.",
+            "You have a unique set of talents and strengths. Use them to your advantage and keep striving for greatness. You are unstoppable.",
+            "Stay positive and keep your eyes on the prize. Your hard work and dedication will pay off. Keep going, you're doing great!",
+            "You have the courage and determination to overcome any obstacle. Keep pushing forward and never lose sight of your dreams.",
+            "Your positive attitude and hard work are an inspiration to others. Keep shining and making a difference. You are amazing."
+        ];
+
+        function storeName() {
+            const name = document.getElementById('nameInput').value;
+            if (name) {
+                localStorage.setItem('name', name);
+                const message = getEncouragingMessage();
+                displayMessage(name, message);
+            }
+        }
+
+        function getEncouragingMessage() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            return messages[randomIndex];
+        }
+
+        function displayMessage(name, message) {
+            document.getElementById('userName').innerText = name;
+            document.getElementById('encouragingMessage').innerText = message;
+            document.getElementById('inputContainer').style.display = 'none';
+            document.getElementById('messageContainer').style.display = 'block';
+        }
+
+        function clearName() {
+            localStorage.removeItem('name');
+            document.getElementById('inputContainer').style.display = 'block';
+            document.getElementById('messageContainer').style.display = 'none';
+        }
+
+        // Display message if name is already stored
+        window.onload = function() {
+            const storedName = localStorage.getItem('name');
+            if (storedName) {
+                const message = getEncouragingMessage();
+                displayMessage(storedName, message);
+            }
+        }
+    </script>
+</body>
+</html>
