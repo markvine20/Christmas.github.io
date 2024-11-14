@@ -62,46 +62,37 @@
     </div>
 
     <script>
-        const messages = [
-            "You have the power to achieve great things. Remember, every step you take brings you closer to your goals. Keep pushing forward and never give up.",
-            "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle. Stay positive and keep striving for excellence.",
-            "Your determination and hard work are truly inspiring. Keep your head up and continue to chase your dreams. Success is just around the corner.",
-            "You are capable of amazing things. Stay focused, stay strong, and keep moving forward. The best is yet to come.",
-            "Every challenge you face is an opportunity to grow and improve. Embrace the journey and keep pushing yourself to new heights.",
-            "Your resilience and perseverance are remarkable. Keep believing in yourself and your abilities. Great things are on the horizon.",
-            "You have a unique set of talents and strengths. Use them to your advantage and keep striving for greatness. You are unstoppable.",
-            "Stay positive and keep your eyes on the prize. Your hard work and dedication will pay off. Keep going, you're doing great!",
-            "You have the courage and determination to overcome any obstacle. Keep pushing forward and never lose sight of your dreams.",
-            "Your positive attitude and hard work are an inspiration to others. Keep shining and making a difference. You are amazing.",
-            "Believe in your dreams and work hard to achieve them. You have the power to make them a reality. Keep going, you're almost there.",
-            "Your strength and determination are truly admirable. Keep pushing forward and never give up. Success is within your reach.",
-            "You have the ability to achieve anything you set your mind to. Stay focused and keep working hard. Great things are coming your way.",
-            "Your hard work and dedication are paying off. Keep believing in yourself and your abilities. You are destined for greatness.",
-            "Stay positive and keep moving forward. Your perseverance and determination will lead you to success. Keep up the great work!",
-            "You have the power to create your own destiny. Keep working hard and never give up on your dreams. You are capable of amazing things.",
-            "Your positive attitude and determination are an inspiration to others. Keep shining and making a difference. You are incredible.",
-            "Believe in yourself and your abilities. You have the power to achieve great things. Keep pushing forward and never give up.",
-            "Your hard work and dedication are truly inspiring. Keep believing in yourself and your dreams. Success is just around the corner.",
-            "You have the strength and determination to overcome any challenge. Keep pushing forward and never lose sight of your goals.",
-            "Your resilience and perseverance are remarkable. Keep believing in yourself and your abilities. Great things are on the horizon.",
-            "You have a unique set of talents and strengths. Use them to your advantage and keep striving for greatness. You are unstoppable.",
-            "Stay positive and keep your eyes on the prize. Your hard work and dedication will pay off. Keep going, you're doing great!",
-            "You have the courage and determination to overcome any obstacle. Keep pushing forward and never lose sight of your dreams.",
-            "Your positive attitude and hard work are an inspiration to others. Keep shining and making a difference. You are amazing."
-        ];
-
-        function storeName() {
-            const name = document.getElementById('nameInput').value;
-            if (name) {
-                localStorage.setItem('name', name);
-                const message = getEncouragingMessage();
-                displayMessage(name, message);
+        async function fetchEncouragingMessage(name) {
+            try {
+                const response = await fetch('https://cors-anywhere.herokuapp.com/https://api.openai.com/v1/engines/davinci-codex/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer YOUR_API_KEY`
+                    },
+                    body: JSON.stringify({
+                        prompt: `Generate an encouraging message for ${name}. The message should be two paragraphs long.`,
+                        max_tokens: 150
+                    })
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data.choices[0].text.trim();
+            } catch (error) {
+                console.error('Error fetching encouraging message:', error);
+                return 'Sorry, we could not generate an encouraging message at this time. Please try again later.';
             }
         }
 
-        function getEncouragingMessage() {
-            const randomIndex = Math.floor(Math.random() * messages.length);
-            return messages[randomIndex];
+        async function storeName() {
+            const name = document.getElementById('nameInput').value;
+            if (name) {
+                localStorage.setItem('name', name);
+                const message = await fetchEncouragingMessage(name);
+                displayMessage(name, message);
+            }
         }
 
         function displayMessage(name, message) {
@@ -118,10 +109,10 @@
         }
 
         // Display message if name is already stored
-        window.onload = function() {
+        window.onload = async function() {
             const storedName = localStorage.getItem('name');
             if (storedName) {
-                const message = getEncouragingMessage();
+                const message = await fetchEncouragingMessage(storedName);
                 displayMessage(storedName, message);
             }
         }
